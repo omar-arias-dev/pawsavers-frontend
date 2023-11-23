@@ -1,0 +1,11 @@
+/* :host::ng-deep {
+    .p-menubar {
+        .p-menuitem {
+            &:only-child {
+                font-size: larger;
+                font-weight: 700;
+            }
+        }
+    }
+}
+ */

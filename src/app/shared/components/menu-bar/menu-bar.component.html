@@ -1,0 +1,15 @@
+<div class="card">
+    <p-menubar [model]="items">
+        <ng-template pTemplate="start">
+            <div class="flex flex-row align-items-center">
+                <img src="./../../../../assets/icons/paw-savers-green.svg" height="40" class="mr-2 ml-2" />
+                <p-divider layout="vertical" styleClass="hidden md:flex"></p-divider>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="end">
+            <div class="flex justify-content-center flex-wrap gap-3">
+                <p-button icon="pi pi-cog" severity="secondary"></p-button>
+            </div>
+        </ng-template>
+    </p-menubar>
+</div>

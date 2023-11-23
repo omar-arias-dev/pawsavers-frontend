@@ -1,0 +1,53 @@
+<main>
+    <header class="flex flex-column justify-content-center align-items-center">
+        <p-image src="./../../../../assets/icons/pet-catdog.svg" alt="catdog" width="50"></p-image>
+        <h2 class="m-0">Add new Pet</h2>
+    </header>
+    <section>
+        <form [formGroup]="newPetForm">
+            <span class="p-float-label">
+                <input pInputText type="text" formControlName="petName" placeholder="Name" id="name" />
+                <label htmlFor="name">Name</label>
+            </span>
+            <span class="p-float-label">
+                <p-inputNumber formControlName="petAge" id="age" suffix=" years old" [showButtons]="true"></p-inputNumber>
+                <label htmlFor="petAge">age</label>
+            </span>
+            <p-dropdown formControlName="petSize" appendTo="body" [options]="petSizes" optionValue="size" optionLabel="size" [showClear]=true placeholder="Select a Size"></p-dropdown>
+            <p-dropdown formControlName="petPersonality" appendTo="body" [options]="petPersonalities" optionValue="personality" optionLabel="personality" [showClear]=true placeholder="Select a Personality"></p-dropdown>
+            <p-dropdown formControlName="petStatus" appendTo="body" [options]="petStatus" optionValue="status" optionLabel="status" [showClear]=true placeholder="Select a Status"></p-dropdown>
+            <span class="p-float-label">
+                <p-calendar formControlName="registrationDateTime" id="regisDate" appendTo="body" [showTime]="true" [showSeconds]="true" dateFormat="yy-mm-dd hh:mm:ss" hourFormat="24"></p-calendar>
+                <label htmlFor="regisDate">Registration Date Time</label>
+            </span>
+            <span class="p-float-label">
+                <p-calendar formControlName="rescueDate" id="rescueDate" appendTo="body" dateFormat="yy.mm.dd"></p-calendar>
+                <label htmlFor="rescueDate">Rescue Date</label>
+            </span>
+            <span class="p-float-label">
+                <textarea formControlName="rescueHistory" id="history" rows="5" cols="30" [autoResize]="true" pInputTextarea></textarea>
+                <label for="history">Rescue history</label>
+            </span>
+            <span class="p-float-label">
+                <textarea formControlName="specialFeatures" id="features" rows="5" cols="30" [autoResize]="true" pInputTextarea></textarea>
+                <label for="features">Special Features</label>
+            </span>
+            <p-dropdown formControlName="specieId" appendTo="body" [options]="petSpecies" optionValue="specieId" optionLabel="specieName" placeholder="Select a Specie"></p-dropdown>
+            <p-dropdown formControlName="breedId" appendTo="body" [options]="petBreeds" optionValue="breedId" optionLabel="breedName" [showClear]=true placeholder="Select a Breed"></p-dropdown>
+            <p-toast></p-toast>
+            <p-fileUpload name="petPhoto[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUploadPetImage($event)" accept="image/*" [maxFileSize]="imageSize">
+                <ng-template pTemplate="toolbar">
+                    <div class="py-3">Upload 1 Photo</div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+            <div class="flex gap-2 my-2">
+                <p-button [disabled]="!newPetForm.valid" (onClick)="onSubmit()" label="Submit" icon="pi pi-check"></p-button>
+            </div>
+        </form>
+    </section>
+</main>
